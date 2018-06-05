@@ -27,10 +27,11 @@ func (h *hub) Publish(message Message) int {
 
 	// iterate over all subscribers, and publish message in separate goroutines
 	for subscriber := range h.registry {
-		if subscriber.Match(message.Topic()) {
+		sub := subscriber
+		if sub.Match(message.Topic()) {
 			wg.Add(1)
 			go func() {
-				count += subscriber.Publish(message)
+				count += sub.Publish(message)
 				wg.Done()
 			}()
 		}
