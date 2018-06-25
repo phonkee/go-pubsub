@@ -30,6 +30,7 @@ func (h *resetHub) CloseSubscriber(subscriber Subscriber) {
 }
 
 // Publish publishes message to subscribers
+// todo Warning this function can throw an exception
 func (h *resetHub) Publish(message Message) int {
 	h.mutex.RLock()
 	defer h.mutex.RUnlock()
