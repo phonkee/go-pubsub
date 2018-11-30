@@ -19,6 +19,15 @@ type Hub interface {
 	Subscribe(topics ...string) Subscriber
 }
 
+// An extention of the Hub interface that allows for a Reset() method
+// that could be used to reinitialise a list of subscribers.
+type ResetHub interface {
+	Hub
+
+	// Reset subscribers list
+	Reset()
+}
+
 // Message holds information about topic on which it was sent
 type Message interface {
 
